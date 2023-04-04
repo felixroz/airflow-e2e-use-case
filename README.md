@@ -14,3 +14,6 @@ mv airflow kubernetes/charts/airflow
 rm -rf airflow-1.8.0.tgz
 ```
 
+```sh
+helm install airflow kubernetes/charts/airflow -n airflow --create-namespace --debug
+```
