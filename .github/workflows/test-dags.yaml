@@ -17,7 +17,7 @@ jobs:
         run: pip install -r airflow/dev/requirements.txt
 
       - name: Test DAGs
-        run: python -m unittest discover airflow.dev.tests
+        run: pytest airflow/dev/tests/dags/test_dag_integrity.py
 
       - name: Copy DAGs to production folder
         run: |
