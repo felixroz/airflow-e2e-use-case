@@ -6,6 +6,8 @@ spec:
   schedule: "* * * * *"
   jobTemplate:
     spec:
+      parallelism: 10
+      completions: 1
       template:
         metadata:
           labels:

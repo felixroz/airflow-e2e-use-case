@@ -385,6 +385,12 @@ buckets:
     purge: false
     objectlocking: false
     versioning: false
+
+  - name: deep-storage
+    policy: public
+    purge: false
+    objectlocking: false
+    versioning: false
   #   # Name of the bucket
   # - name: bucket1
   #   # Policy to be set on the
