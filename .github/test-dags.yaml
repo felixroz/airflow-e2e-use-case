@@ -1,0 +1,38 @@
+name: Test and Deploy DAGs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Test DAGs
+        run: python -m unittest discover airflow.dev.tests
+
+      - name: Copy DAGs to production folder
+        run: |
+          mkdir -p airflow/dags
+          cp -R airflow/dev/dags/* airflow/dags/
+        if: ${{ success() }}
+
+#      - name: Build and push Docker image
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: .
+#          file: docker/airflow/Dockerfile
+#          push: true
+#          tags: your-dockerhub-username/your-docker-image-name:${{ github.sha }}
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#        if: ${{ success() }}
+        
