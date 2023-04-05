@@ -21,8 +21,7 @@ jobs:
 
       - name: Copy DAGs to production folder
         run: |
-          mkdir -p airflow/dags
-          cp -R airflow/dev/dags/* airflow/dags/
+          mkdir -p airflow/dags && cp -Rv airflow/dev/dags/* airflow/dags/
         if: ${{ success() }}
 
 #      - name: Build and push Docker image
