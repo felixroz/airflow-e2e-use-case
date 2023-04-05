@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ingestion-app-test
+spec:
+  containers:
+  - name: eda-ingestion-app
+    image: eda-ingestion-app:0.0.5
+    env:
+      - name: MINIO_USER
+        value:  'myaccesskey'
+      - name: MINIO_KEY
+        value: 'mysecretkey'
+      - name: MINIO_ENDPOINT_URL
+        value: 'http://minio.minio.svc.cluster.local:9000'
