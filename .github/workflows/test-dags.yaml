@@ -24,14 +24,18 @@ jobs:
           mkdir -p airflow/dags && cp -Rv airflow/dev/dags/* airflow/dags/
         if: ${{ success() }}
 
-      - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Update example.txt"
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          commit_message: Update DAGs
+          github_token: ${{ secrets.GHA_TOKEN }}
           branch: master
-          commit_options: '--no-verify'
 
       
 
