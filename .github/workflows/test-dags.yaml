@@ -23,6 +23,15 @@ jobs:
         run: |
           mkdir -p airflow/dags && cp -Rv airflow/dev/dags/* airflow/dags/
         if: ${{ success() }}
+        
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update DAGs
+          branch: main
+          commit_options: '--no-verify'
+
+      
 
 #      - name: Build and push Docker image
 #        uses: docker/build-push-action@v2
